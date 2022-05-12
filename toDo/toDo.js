@@ -1,3 +1,4 @@
+
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function(){
     if(this.readyState==4 && this.status==200){
@@ -9,6 +10,7 @@ xhttp.open("GET","https://jsonplaceholder.typicode.com/todos",true);
 xhttp.send();
 
 function tableEntry(x){
+    
     var data = "";
     for(i=0;i<x.length;i++){
         if(x[i].completed==true){

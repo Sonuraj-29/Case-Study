@@ -26,9 +26,3 @@ document.getElementById("formDet").addEventListener("submit",function(event){
     event.preventDefault();
     validate(redirect);
 })
-
-
-
-
-
-
