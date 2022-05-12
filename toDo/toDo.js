@@ -2,7 +2,6 @@ var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function(){
     if(this.readyState==4 && this.status==200){
         var myArr = JSON.parse(this.responseText);
-        console.log('1')
         tableEntry(myArr);
     }
 }
@@ -19,20 +18,32 @@ function tableEntry(x){
             data += `<tr><td class="text-center">${x[i].id}</td><td>${x[i].title}</td><td class="text-center"><input class="check" type="checkbox"></td></tr>`;
         }
     }
-    console.log('2')
-document.getElementById('dataDisp').innerHTML = data;
+        
+    document.getElementById('dataDisp').innerHTML = data;
+
+    var checkBox = document.getElementsByClassName("check");
+    count = 0;
+    for(i=0;i<checkBox.length;i++){
+        checkBox[i].addEventListener('change',function(){
+            if(this.checked){
+                count++;
+                countCheck();
+            }
+            else{
+                count--;
+            }
+        })
+    }
 }
 
-if(xhttp.readyState==4){
-
-    console.log('3')
-    document.getElementsByClassName('check').addEventListener("change",function(){
-        var c = 0;
-        for(i=0;i<input.length;i++){
-            if(input[i].checked == true){
-                c++;
-                console.log(c);
-            }
+function countCheck(){
+    
+    let promise = new Promise(function(resolve){
+        if(count==5){
+            resolve("Successfully completed 5 tasks. Keep going.")
         }
+    })
+    promise.then(function(success){
+        alert(success);
     })
 }
